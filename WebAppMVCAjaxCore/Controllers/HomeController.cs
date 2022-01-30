@@ -23,7 +23,7 @@ namespace WebAppMVCAjaxCore.Controllers
         {
             return View();
         }
-
+//change
         public IActionResult Privacy()
         {
             return View();
