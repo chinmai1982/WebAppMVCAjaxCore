@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <input type="text" id="studId" placeholder="Enter student id here" />
+    <br />
+    <input type="text" id="studName" placeholder="Enter student Name here." />
+    <br />
+    <input type="text" id="studAge" placeholder="Enter Student Age here" />
+    <br />
+    <input type="text" id="studAddress" placeholder="Enter Student Address here" />
+    <input type="button" value="Send Data" onclick="Save()" class="btn btn-primary" />
+    <h1 >STUDENT ID</h1>-------<h1 id="StID"></h1>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        function Save() {
+            var studentId = $("#studId").val();
+            var studentName = $("#studName").val();
+            var age = $("#studAge").val();
+            var address = $("#studAddress").val();
+            //alert(StudentId);
+            //alert(StudentName);
+            //alert(Age);
+            //alert(Address);
+            var obj = {
+                StudentId: studentId,
+                StudentName: studentName,
+                Age: age,
+                Address: address
+            };
+            SaveData(obj);
+        }
+        function SaveData(obj) {
+            $.ajax({
+                url: "/Home/SaveStudentDetails",
+                method: "POST",
+                data: obj,
+                success: function (data) {
+                    console.log(data);
+                    alert(data);
+                    alert(($("#StID").text(data.StudentId)));
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            })
+        }
+    </script>
+}

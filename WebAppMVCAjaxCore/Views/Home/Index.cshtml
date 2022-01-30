@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+
+    <h1>Student Id : </h1> -- <h1 id="StudId"></h1>
+    <br />
+    <h1>Student Name : </h1> -- <h1 id="StudName"></h1>
+    <br />
+    <h1>Student Age : </h1> -- <h1 id="studAge"></h1>
+    <br />
+    <h1>Student Address : </h1> -- <h1 id="studAddress"></h1>
+    <br />
+    <input type="button" value="Get Data" onclick="GetData()" class="btn btn-primary" />
+</div>
+@section Scripts{ 
+    <script type="text/javascript">
+        function GetData() {
+            $.ajax({
+                url: "/Home/GetStudentDetails",
+                method: "GET",
+                success: function (data) {
+                    console.log(data);
+                    //data = JSON.parse(data);
+                    alert(data);
+                    alert($("#StudId").text(data.StudentId));
+                    $("#StudName").text(data.StudentName).val();
+                    $("#studAge").text(data.Age);
+                    $("#studAddress").text(data.Address);
+                },
+                error: function (err) {
+                    console.log(err);
+                },
+            })
+        }
+    </script>
+}
