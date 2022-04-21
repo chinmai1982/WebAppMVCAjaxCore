@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebAppMVCAjaxCore.Models
 {
+//check pull
     public class Student
     {
         public int StudentId { get; set; }
